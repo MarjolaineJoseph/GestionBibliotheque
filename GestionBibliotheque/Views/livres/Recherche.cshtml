@@ -1,0 +1,109 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.livres>
+
+@{
+    ViewBag.Title = "Recherche";
+}
+
+<h2>Recherche livres</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Titre")
+            @Html.TextBox("titreRecherche")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Auteur")
+            @Html.TextBox("auteurRecherche")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Nombre de pages")
+            @Html.TextBox("nbPagesRecherche")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Année d'édition")
+            @Html.TextBox("anneeEdRecherchee")
+        </div>
+
+        <div class="4u 12u$(small)">
+            @Html.Label("Catégorie")
+            @Html.TextBox("categorieRecherchee")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("ISBN")
+            @Html.TextBox("ISBNRecherche")
+        </div>
+
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Rechercher" class="special" /></li>
+                <li><input type="reset" value="Effacer" /></li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Titre")
+        </th>
+        <th>
+            @Html.Label("Auteur")
+        </th>
+        <th>
+            @Html.Label("Nombre pages")
+        </th>
+        <th>
+            @Html.Label("Année d'édition")
+        </th>
+        <th>
+            @Html.Label("Catégorie")
+        </th>
+        <th>
+            @Html.Label("ISBN")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.auteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nbPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.anneeeEdition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.idLivre }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.idLivre }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.idLivre })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

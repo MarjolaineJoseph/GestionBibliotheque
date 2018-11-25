@@ -1,0 +1,72 @@
+﻿@model GestionBibliotheque.Models.membres
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <dl>
+        <dt>
+            @Html.Label("Prénom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+
+        <dt>
+            @Html.Label("Nom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+            @Html.Label("Genre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genre)
+        </dd>
+
+        <dt>
+           @Html.Label("Date de naissance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateNaissance)
+        </dd>
+
+        <dt>
+            @Html.Label("Téléphone")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephone)
+        </dd>
+
+        <dt>
+            @Html.Label("Courriel")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courriel)
+        </dd>
+
+        <dt>
+            @Html.Label("Adresse")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.adresses.noCivique), @Html.DisplayFor(model => model.adresses.rue)<br />
+            @Html.DisplayFor(model => model.adresses.ville), @Html.DisplayFor(model => model.adresses.province)<br />
+            @Html.DisplayFor(model => model.adresses.codePostal)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.idMembre }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

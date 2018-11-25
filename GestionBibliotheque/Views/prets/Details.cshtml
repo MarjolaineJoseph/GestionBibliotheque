@@ -1,0 +1,56 @@
+﻿@model GestionBibliotheque.Models.prets
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Détails</h2>
+
+<div>
+    <dl>
+        <dt>
+            @Html.Label("Prénom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.membres.prenom)
+        </dd>
+
+        <dt>
+            @Html.Label("Nom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.membres.nom)
+        </dd>
+
+        <dt>
+            @Html.Label("Titre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.livres.titre)
+        </dd>
+
+        <dt>
+            @Html.Label("Date de prêt")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePret)
+        </dd>
+
+        <dt>
+            @Html.Label("Date de retour")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateRetourPret)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour", "Edit", new { id = Model.idPret }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

@@ -1,0 +1,48 @@
+﻿@model GestionBibliotheque.Models.prets
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modifier</h2>
+
+
+<form method="post" action="Edit">
+    @Html.HiddenFor(model => model.idPret)
+
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Membre")
+            @Html.DropDownList("idMembre", ViewBag.idMembre as List<SelectListItem>)
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Livre")
+            @Html.DropDownList("idLivre", ViewBag.idLivre as List<SelectListItem>)
+        </div>
+
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Date de prêt")
+            @Html.EditorFor(model => model.datePret, new { htmlAttributes = new { @type = "date" } })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Date de retour")
+            @Html.EditorFor(model => model.dateRetourPret, new { htmlAttributes = new { @type = "date" } })
+        </div>
+
+
+        <!-- Break -->
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Enregistrer" class="special" /></li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+

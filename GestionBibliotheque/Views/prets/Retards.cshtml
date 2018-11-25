@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.prets>
+
+@{
+    ViewBag.Title = "Retards";
+}
+
+<h2>Prêts en retard</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un pret", "Create")
+</p>
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>
+                    @Html.Label("Prénom")
+                </th>
+                <th>
+                    @Html.Label("Nom")
+                </th>
+                <th>
+                    @Html.Label("Titre")
+                </th>
+                <th>
+                    @Html.Label("Date du prêt")
+                </th>
+
+                <th>
+                    @Html.Label("Date du retour")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.membres.prenom)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.membres.nom)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.livres.titre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datePret)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateRetourPret)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Retour", "Edit", new { id = item.idPret }) |
+                        @Html.ActionLink("Détails", "Details", new { id = item.idPret }) |
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.idPret })
+                        <a href="#" class="button small">Notifier</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

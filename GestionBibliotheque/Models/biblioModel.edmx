@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaseDonneesBiblioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adresses">
+          <Key>
+            <PropertyRef Name="idAdresse" />
+          </Key>
+          <Property Name="idAdresse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rue" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="noCivique" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ville" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="province" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="codePostal" Type="nvarchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="livres">
+          <Key>
+            <PropertyRef Name="idLivre" />
+          </Key>
+          <Property Name="idLivre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="auteur" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="nbPage" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="categorie" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="anneeeEdition" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="membres">
+          <Key>
+            <PropertyRef Name="idMembre" />
+          </Key>
+          <Property Name="idMembre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAdresse" Type="int" />
+          <Property Name="prenom" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="genre" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="dateNaissance" Type="date" Nullable="false" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="courriel" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prets">
+          <Key>
+            <PropertyRef Name="idPret" />
+          </Key>
+          <Property Name="idPret" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMembre" Type="int" Nullable="false" />
+          <Property Name="idLivre" Type="int" Nullable="false" />
+          <Property Name="datePret" Type="date" Nullable="false" />
+          <Property Name="dateRetourPret" Type="date" />
+        </EntityType>
+        <Association Name="FK__membres__idAdres__060DEAE8">
+          <End Role="adresses" Type="Self.adresses" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="membres" Type="Self.membres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adresses">
+              <PropertyRef Name="idAdresse" />
+            </Principal>
+            <Dependent Role="membres">
+              <PropertyRef Name="idAdresse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prets__idLivre__117F9D94">
+          <End Role="livres" Type="Self.livres" Multiplicity="1" />
+          <End Role="prets" Type="Self.prets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="livres">
+              <PropertyRef Name="idLivre" />
+            </Principal>
+            <Dependent Role="prets">
+              <PropertyRef Name="idLivre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prets__idMembre__108B795B">
+          <End Role="membres" Type="Self.membres" Multiplicity="1" />
+          <End Role="prets" Type="Self.prets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membres">
+              <PropertyRef Name="idMembre" />
+            </Principal>
+            <Dependent Role="prets">
+              <PropertyRef Name="idMembre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDonneesBiblioModelStoreContainer">
+          <EntitySet Name="adresses" EntityType="Self.adresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="livres" EntityType="Self.livres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="membres" EntityType="Self.membres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prets" EntityType="Self.prets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__membres__idAdres__060DEAE8" Association="Self.FK__membres__idAdres__060DEAE8">
+            <End Role="adresses" EntitySet="adresses" />
+            <End Role="membres" EntitySet="membres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prets__idLivre__117F9D94" Association="Self.FK__prets__idLivre__117F9D94">
+            <End Role="livres" EntitySet="livres" />
+            <End Role="prets" EntitySet="prets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prets__idMembre__108B795B" Association="Self.FK__prets__idMembre__108B795B">
+            <End Role="membres" EntitySet="membres" />
+            <End Role="prets" EntitySet="prets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseDonneesBiblioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adresses">
+          <Key>
+            <PropertyRef Name="idAdresse" />
+          </Key>
+          <Property Name="idAdresse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rue" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="noCivique" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ville" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codePostal" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="membres" Relationship="Self.FK__membres__idAdres__060DEAE8" FromRole="adresses" ToRole="membres" />
+        </EntityType>
+        <EntityType Name="livres">
+          <Key>
+            <PropertyRef Name="idLivre" />
+          </Key>
+          <Property Name="idLivre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="auteur" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nbPage" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categorie" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="anneeeEdition" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="prets" Relationship="Self.FK__prets__idLivre__117F9D94" FromRole="livres" ToRole="prets" />
+        </EntityType>
+        <EntityType Name="membres">
+          <Key>
+            <PropertyRef Name="idMembre" />
+          </Key>
+          <Property Name="idMembre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAdresse" Type="Int32" />
+          <Property Name="prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateNaissance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="telephone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="courriel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="adresses" Relationship="Self.FK__membres__idAdres__060DEAE8" FromRole="membres" ToRole="adresses" />
+          <NavigationProperty Name="prets" Relationship="Self.FK__prets__idMembre__108B795B" FromRole="membres" ToRole="prets" />
+        </EntityType>
+        <EntityType Name="prets">
+          <Key>
+            <PropertyRef Name="idPret" />
+          </Key>
+          <Property Name="idPret" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMembre" Type="Int32" Nullable="false" />
+          <Property Name="idLivre" Type="Int32" Nullable="false" />
+          <Property Name="datePret" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateRetourPret" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="livres" Relationship="Self.FK__prets__idLivre__117F9D94" FromRole="prets" ToRole="livres" />
+          <NavigationProperty Name="membres" Relationship="Self.FK__prets__idMembre__108B795B" FromRole="prets" ToRole="membres" />
+        </EntityType>
+        <Association Name="FK__membres__idAdres__060DEAE8">
+          <End Role="adresses" Type="Self.adresses" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="membres" Type="Self.membres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adresses">
+              <PropertyRef Name="idAdresse" />
+            </Principal>
+            <Dependent Role="membres">
+              <PropertyRef Name="idAdresse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prets__idLivre__117F9D94">
+          <End Role="livres" Type="Self.livres" Multiplicity="1" />
+          <End Role="prets" Type="Self.prets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="livres">
+              <PropertyRef Name="idLivre" />
+            </Principal>
+            <Dependent Role="prets">
+              <PropertyRef Name="idLivre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prets__idMembre__108B795B">
+          <End Role="membres" Type="Self.membres" Multiplicity="1" />
+          <End Role="prets" Type="Self.prets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membres">
+              <PropertyRef Name="idMembre" />
+            </Principal>
+            <Dependent Role="prets">
+              <PropertyRef Name="idMembre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDonneesBiblioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adresses" EntityType="Self.adresses" />
+          <EntitySet Name="livres" EntityType="Self.livres" />
+          <EntitySet Name="membres" EntityType="Self.membres" />
+          <EntitySet Name="prets" EntityType="Self.prets" />
+          <AssociationSet Name="FK__membres__idAdres__060DEAE8" Association="Self.FK__membres__idAdres__060DEAE8">
+            <End Role="adresses" EntitySet="adresses" />
+            <End Role="membres" EntitySet="membres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prets__idLivre__117F9D94" Association="Self.FK__prets__idLivre__117F9D94">
+            <End Role="livres" EntitySet="livres" />
+            <End Role="prets" EntitySet="prets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prets__idMembre__108B795B" Association="Self.FK__prets__idMembre__108B795B">
+            <End Role="membres" EntitySet="membres" />
+            <End Role="prets" EntitySet="prets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaseDonneesBiblioModelStoreContainer" CdmEntityContainer="BaseDonneesBiblioEntities">
+          <EntitySetMapping Name="adresses">
+            <EntityTypeMapping TypeName="BaseDonneesBiblioModel.adresses">
+              <MappingFragment StoreEntitySet="adresses">
+                <ScalarProperty Name="idAdresse" ColumnName="idAdresse" />
+                <ScalarProperty Name="rue" ColumnName="rue" />
+                <ScalarProperty Name="noCivique" ColumnName="noCivique" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="livres">
+            <EntityTypeMapping TypeName="BaseDonneesBiblioModel.livres">
+              <MappingFragment StoreEntitySet="livres">
+                <ScalarProperty Name="idLivre" ColumnName="idLivre" />
+                <ScalarProperty Name="titre" ColumnName="titre" />
+                <ScalarProperty Name="auteur" ColumnName="auteur" />
+                <ScalarProperty Name="nbPage" ColumnName="nbPage" />
+                <ScalarProperty Name="categorie" ColumnName="categorie" />
+                <ScalarProperty Name="anneeeEdition" ColumnName="anneeeEdition" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="membres">
+            <EntityTypeMapping TypeName="BaseDonneesBiblioModel.membres">
+              <MappingFragment StoreEntitySet="membres">
+                <ScalarProperty Name="idMembre" ColumnName="idMembre" />
+                <ScalarProperty Name="idAdresse" ColumnName="idAdresse" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="courriel" ColumnName="courriel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prets">
+            <EntityTypeMapping TypeName="BaseDonneesBiblioModel.prets">
+              <MappingFragment StoreEntitySet="prets">
+                <ScalarProperty Name="idPret" ColumnName="idPret" />
+                <ScalarProperty Name="idMembre" ColumnName="idMembre" />
+                <ScalarProperty Name="idLivre" ColumnName="idLivre" />
+                <ScalarProperty Name="datePret" ColumnName="datePret" />
+                <ScalarProperty Name="dateRetourPret" ColumnName="dateRetourPret" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

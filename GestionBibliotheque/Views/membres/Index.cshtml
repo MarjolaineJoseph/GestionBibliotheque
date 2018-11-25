@@ -1,0 +1,76 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.membres>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>
+                    @Html.Label("Prénom")
+                </th>
+                <th>
+                    @Html.Label("Nom")
+                </th>
+                <th>
+                    @Html.Label("Genre")
+                </th>
+                <th>
+                    @Html.Label("Date de naissance")
+                </th>
+                <th>
+                    @Html.Label("Téléphone")
+                </th>
+                <th>
+                    @Html.Label("Courriel")
+                </th>
+                <th>
+                    @Html.Label("Ville")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prenom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateNaissance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.courriel)
+                    </td>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.adresses.ville)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.idMembre }) |
+                        @Html.ActionLink("Détails", "Details", new { id = item.idMembre }) |
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.idMembre })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

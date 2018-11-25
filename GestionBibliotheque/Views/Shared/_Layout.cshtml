@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bibliothèque communautaire</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="@Url.Content("~/Content/main.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/font-awesome.min.css")" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="@Url.Action("Index", "Home")" class="logo"><strong>Gestion</strong> de la bibliothèque</a>
+                    <ul class="icons">
+                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+                    </ul>
+                </header>
+
+                @RenderBody()
+
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")">Accueil</a></li>
+                        <li>
+                            <span class="opener">Membres</span>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "membres")">Liste des membres</a></li>
+                                <li><a href="@Url.Action("Create", "membres")">Nouveau membre</a></li>
+                                <li><a href="@Url.Action("Recherche", "membres")">Recherche</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Livres</span>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "livres")">Liste des livres</a></li>
+                                <li><a href="@Url.Action("Create", "livres")">Ajouter un livre</a></li>
+                                <li><a href="@Url.Action("Recherche", "livres")">Recherche</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Prêts</span>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "prets")">Liste des prêts</a></li>
+                                <li><a href="@Url.Action("Create", "prets")">Enregistrer un prêt</a></li>
+                                <li><a href="@Url.Action("Recherche", "prets")">Recherche</a></li>
+                                <li><a href="@Url.Action("Retards", "prets")">Retards</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">À propos</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>Ante interdum</h2>
+                    </header>
+                    <div class="mini-posts">
+                        <article>
+                            <a href="#" class="image"><img src="@Url.Content("~/Content/images/pic07.jpg")" alt="pic 07" /></a>
+                            <p>Wow wow wow activité à la biblio!!</p>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="@Url.Content("~/Content/images/pic08.jpg")" alt="pic 07" /></a>
+                            <p>Wow wow wow activité à la biblio!!</p>
+                        </article>
+                    </div>
+                </section>
+
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>Contactez-nous</h2>
+                    </header>
+                    <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+                    <ul class="contact">
+                        <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
+                        <li class="fa-phone">(000) 000-0000</li>
+                        <li class="fa-home">
+                            1234 Somewhere Road #8254<br />
+                            Nashville, TN 00000-0000
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/skel.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/util.js")"></script>
+    <script src="@Url.Content("~/Scripts/main.js")"></script>
+</body>
+</html>
+

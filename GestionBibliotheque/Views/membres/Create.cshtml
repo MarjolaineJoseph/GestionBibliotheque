@@ -1,0 +1,85 @@
+﻿@model GestionBibliotheque.Models.membres
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Enregistrer un nouveau membre</h2>
+
+<form method="post" action="Enregistrer">
+    @Html.HiddenFor(model => model.idMembre)
+    @Html.HiddenFor(model => model.idAdresse)
+
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            Prénom
+            <input type="text" name="prenom" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Nom
+            <input type="text" name="nom" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Date de naissance
+            <input type="date" name="dateNaissance" />
+        </div>
+
+        <div class="12u$">
+            Genre
+            <div class="select-wrapper">
+                <select name="genre">
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Numéro Civique
+            <input type="text" name="noCivique" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Rue
+            <input type="text" name="rue" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Ville
+            <input type="text" name="ville" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Province
+            <input type="text" name="province" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Code Postal
+            <input type="text" name="codePostal" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Téléphone
+            <input type="text" name="telephone" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Courriel
+            <input type="text" name="courriel" />
+        </div>
+
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Enregistrer" class="special" /></li>
+                <li><input type="reset" value="Effacer" /></li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

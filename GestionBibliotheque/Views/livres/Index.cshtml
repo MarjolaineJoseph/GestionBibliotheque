@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.livres>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un livre", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Titre")
+        </th>
+        <th>
+            @Html.Label("Auteur")
+        </th>
+        <th>
+            @Html.Label("Nombre de page")
+        </th>
+        <th>
+            @Html.Label("Année d'édition")
+        </th>
+        <th>
+            @Html.Label("Catégorie")
+        </th>
+        <th>
+            @Html.Label("ISBN")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.auteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nbPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.anneeeEdition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.idLivre }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.idLivre }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.idLivre })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.prets>
+
+@{
+    ViewBag.Title = "Recherche";
+}
+
+<h2>Rechercher un prêt</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Prénom")
+            @Html.TextBox("prenomMembreRecherche")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Nom")
+            @Html.TextBox("nomMembreRecherche")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Livre")
+            @Html.TextBox("titreLivreRecherche")
+        </div>
+        
+        <div class="6u 12u$(xsmall)">
+        </div>
+        <div class="6u 12u$(xsmall)">
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Date de prêt")
+            @Html.TextBox("datePretRecherchee")
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Date de retour")
+            @Html.TextBox("dateRetourRecherchee")
+        </div>
+
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Chercher" class="special" /></li>
+                <li><input type="reset" value="Effacer" /></li>
+            </ul>
+        </div>
+    </div>
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.Label("Prénom")
+        </th>
+        <th>
+            @Html.Label("Nom")
+        </th>
+        <th>
+            @Html.Label("Livre")
+        </th>
+        <th>
+            @Html.Label("Date de prêt")
+        </th>
+        <th>
+            @Html.Label("Date de retour")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.membres.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.membres.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.livres.titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datePret)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateRetourPret)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idPret }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idPret }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idPret })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

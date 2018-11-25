@@ -1,0 +1,146 @@
+﻿@model IEnumerable<GestionBibliotheque.Models.membres>
+
+@{
+    ViewBag.Title = "Recherche";
+}
+
+<h2>Recherche</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row uniform">
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Prénom")
+
+            @Html.TextBox("prenomRecherche")
+
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Nom")
+            @Html.TextBox("nomRecherche", null, new { htmlAttributes = new { @placeholder = "Nom" } })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Genre")
+            @Html.TextBox("genreRecherche", null, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Date de naissance")
+            @Html.TextBox("dateNaissanceRecherchee", null, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Téléphone")
+            @Html.TextBox("telephoneRecherche", null, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Courriel")
+            @Html.TextBox("courrielRecherche", null, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("No civique: ")
+            @Html.TextBox("noCiviqueRecherche", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("rue ")
+            @Html.TextBox("rueRecherchee", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("code")
+            @Html.TextBox("codeRecherche", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("ville")
+            @Html.TextBox("villeRecherchee", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("province")
+            @Html.TextBox("provinceRecherchee", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Recherche" class="special" /></li>
+                <li><input type="reset" value="Effacer" /></li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+<table>
+    <tr>
+        <th>
+            @Html.Label("Prénom")
+        </th>
+        <th>
+            @Html.Label("Nom")
+        </th>
+        <th>
+            @Html.Label("Genre")
+        </th>
+        <th>
+            @Html.Label("Date de naissance")
+        </th>
+        <th>
+            @Html.Label("Téléphone")
+        </th>
+        <th>
+            @Html.Label("Courriel")
+        </th>
+        <th>
+            @Html.Label("Ville")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateNaissance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courriel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adresses.ville) <br />
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.idMembre }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.idMembre }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.idMembre })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

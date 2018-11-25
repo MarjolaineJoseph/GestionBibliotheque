@@ -1,0 +1,64 @@
+﻿@model GestionBibliotheque.Models.prets
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>voulez-vous supprimer ce prêt?</h3>
+<div>
+    <h4>prets</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Prénom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.membres.prenom)
+        </dd>
+
+        <dt>
+            @Html.Label("Nom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.membres.nom)
+        </dd>
+
+        <dt>
+            @Html.Label("Titre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.livres.titre)
+        </dd>
+
+        <dt>
+            @Html.Label("Date du prêt")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePret)
+        </dd>
+
+        <dt>
+            @Html.Label("Date de retour")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateRetourPret)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
+        </div>
+    }
+</div>

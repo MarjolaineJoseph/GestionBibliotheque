@@ -1,0 +1,66 @@
+﻿@model GestionBibliotheque.Models.livres
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.titre)</h4>
+    <hr />
+    <dl>
+        <dt>
+            @Html.Label("Titre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titre)
+        </dd>
+
+        <dt>
+            @Html.Label("Auteur")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auteur)
+        </dd>
+
+        <dt>
+            @Html.Label("Nombre de page")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nbPage)
+        </dd>
+
+        <dt>
+            @Html.Label("Catégorie")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorie)
+        </dd>
+
+        <dt>
+            @Html.Label("Année d'édition")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anneeeEdition)
+        </dd>
+
+        <dt>
+            @Html.Label("ISBN")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.idLivre }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

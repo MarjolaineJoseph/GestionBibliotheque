@@ -1,0 +1,58 @@
+﻿@model GestionBibliotheque.Models.livres
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<form method="post" action="Edit">
+
+    @Html.HiddenFor(model => model.idLivre)
+
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Titre")
+            @Html.EditorFor(model => model.titre)
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Auteur")
+            @Html.EditorFor(model => model.auteur)
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Nombre de pages")
+            @Html.EditorFor(model => model.nbPage)
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("Année d'édition")
+            @Html.EditorFor(model => model.anneeeEdition)
+        </div>
+
+        <div class="4u 12u$(small)">
+            <div class="select-wrapper">
+                @Html.Label("Catégorie")
+                @Html.EditorFor(model => model.categorie)
+            </div>
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            @Html.Label("ISBN")
+            @Html.EditorFor(model => model.ISBN)
+        </div>
+
+        <!-- Break -->
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Enregistrer" class="special" /></li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

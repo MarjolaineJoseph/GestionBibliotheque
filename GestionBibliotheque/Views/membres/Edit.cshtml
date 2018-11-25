@@ -1,0 +1,89 @@
+﻿@model GestionBibliotheque.Models.membres
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post" action="Edit">
+    <input type="hidden" name="idAdresse" value="@Model.idAdresse" />
+    <input type="hidden" name="idMembre" value="@Model.idMembre" />
+
+    <div class="row uniform">
+        <div class="6u 12u$(xsmall)">
+            Prénom
+            <input type="text" name="prenom" value="@Model.prenom" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Nom
+            <input type="text" name="nom" value="@Model.nom" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Date de naissance
+            <input type="date" name="dateNaissance" value="@Model.dateNaissance.ToShortDateString()" />
+        </div>
+
+        @{
+            if (@Model.genre.ToString() == "M")
+            {
+                string lehtmlM = "<div class=\"4u 12u$(small)\"><div class=\"select - wrapper\"><select name=\"genre\" id=\"genre\"><option value=\"M\" selected=\"selected\">Homme</option><option value=\"F\">Femme</option></select></div></div>";
+                @Html.Raw(lehtmlM);
+            }
+            else
+            {
+                string lehtmlF = "<div class=\"4u 12u$(small)\"><div class=\"select - wrapper\"><select name=\"genre\" id=\"genre\"><option value=\"M\">Homme</option><option value=\"F\" selected=\"selected\">Femme</option></select></div></div>";
+                @Html.Raw(lehtmlF);
+            }
+        }
+
+        <div class="6u 12u$(xsmall)">
+            Numéro Civique
+            <input type="text" name="noCivique" value="@TempData["noCivique"]" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Rue
+            <input type="text" name="rue" value="@TempData["rue"]" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Ville
+            <input type="text" name="ville" value="@TempData["ville"]" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Province
+            <input type="text" name="province" value="@TempData["province"]" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Code Postal
+            <input type="text" name="codePostal" value="@TempData["codePostal"]" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Téléphone
+            <input type="text" name="telephone" value="@Model.telephone" />
+        </div>
+
+        <div class="6u 12u$(xsmall)">
+            Courriel
+            <input type="text" name="courriel" value="@Model.courriel" />
+        </div>
+
+        <div class="12u$">
+            <ul class="actions">
+                <li><input type="submit" value="Enregistrer" class="special" /></li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
